@@ -1,0 +1,178 @@
+#:kivy 1.10.0
+#:import utils kivy.utils
+<LoginPage>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: [10,50,10,0]
+        spacing: 100
+        canvas.before:
+            Color:
+                rgba: utils.get_color_from_hex('#58AE6F')
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        Button:
+            text: '<    Назад'
+            size_hint: 1, None
+            height: 37
+            text_size: self.size
+            halign: 'left'
+            valign: 'middle'
+            pos_hint: {'top': 1}
+            top: 0
+            left: 1
+            padding: 20, 0, 0, 0
+            markup: True
+            color: 26, 26, 26, 1
+            background_color: 100, 98, 98, 1
+            on_press: root.manager.current = 'start'
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: 1, None
+            height: self.minimum_height
+
+            Image:
+                source: '7700_6_02 2.png'
+                size_hint_y: None
+                height: 128
+                pos_hint: {'center_x': 0.5}
+                allow_stretch: True
+                keep_ratio: True
+
+            Label:
+                text: 'Почніть керувати своїми \nфінансами разом із SpendWise'
+                size_hint_y: None
+                height: self.texture_size[1]  # Висота тексту автоматично розраховується
+                font_size: 16
+                font_weight: '500'
+                line_height: 1.3  # Відстань між рядками
+                multiline: True  # Дозвіл на багаторядковий текст
+                valign: 'bottom'
+                halign: 'center'
+                font_name: './Data/Fonts/Montserrat SemiBold 600.ttf'
+                color: 26, 26, 26, 1
+
+
+        MDBoxLayout:
+            id: box
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: 50
+            spacing: 10
+
+            RountedButton:
+                id: btn_reg
+                text: "Реєстрація"
+                color: utils.get_color_from_hex('#434343')
+                background_normal: ''
+                on_press: root.show_registration_form()
+                width:  self.parent.width / 2.1
+                pos_hint: {"center_x": .1, "center_y": .5}
+
+            RountedButton:
+                id: btn_login
+                text: "Вхід"
+                color: utils.get_color_from_hex('#434343')
+                background_normal: ''
+                on_press: root.show_login_form()
+                width:  self.parent.width / 2.1
+                pos_hint: {"center_x": .5, "center_y": .5}
+
+
+        TextInput:
+            id: email_input
+            hint_text: '      Введіть пошту'
+            size_hint: None, None
+            size: 250, 40
+            multiline: False
+            password: False
+            size_hint: 1, None
+            opacity: 0  # Приховати поле вводу за замовчуванням
+            background_color: (0, 0, 0, 0)  # видаліть з background_color
+            canvas.before:
+                Rectangle:
+                    pos: self.pos[0] - 10, self.pos[1] + self.size[1]/2 - 10
+                    size: 30, 30
+                    source: './Data/Images/fluent--person-24-regular.png'
+                Color:
+                    rgba: 90,90,90, 1
+                Line:
+                    points: self.x, self.y, self.x + self.width, self.y  # відправлення і закінчення лінії
+
+        TextInput:
+            id: password_input
+            hint_text: '      Введіть пароль'
+            size_hint: None, None
+            size: 250, 40
+            multiline: False
+            password: True
+            size_hint: 1, None
+            opacity: 0  # Приховати поле вводу за замовчуванням
+            background_color: (0, 0, 0, 0)  # видаліть з background_color
+            canvas.before:
+                Rectangle:
+                    pos: self.pos[0] - 10, self.pos[1] + self.size[1]/2 - 10
+                    size: 30, 30
+                    source: './Data/Images/icon-park-outline--lock.png'
+                Color:
+                    rgba: 90,90,90, 1
+                Line:
+                    points: self.x, self.y, self.x + self.width, self.y  # відправлення і закінчення лінії
+
+
+        TextInput:
+            id: password_confirm_input
+            hint_text: '      Повторіть пароль'
+            size_hint: None, None
+            size: 250, 40
+            multiline: False
+            password: True
+            size_hint: 1, None
+            opacity: 0  # Приховати поле вводу за замовчуванням
+            background_color: (0, 0, 0, 0)  # видаліть з background_color
+            canvas.before:
+                Rectangle:
+                    pos: self.pos[0] - 10, self.pos[1] + self.size[1]/2 - 10
+                    size: 30, 30
+                    source: './Data/Images/icon-park-outline--lock.png'
+                Color:
+                    rgba: 90,90,90, 1
+                Line:
+                    points: self.x, self.y, self.x + self.width, self.y  # відправлення і закінчення лінії
+
+        Button:
+            id: forgot_password_button
+            text: 'Забули пароль?'
+            on_press: root.forgot_password()
+            size_hint_y: None
+            height: 40
+            background_normal: ''
+            background_color: (0, 0, 0, 0)
+            color: (0, 1, 0, 1)
+            opacity: 0
+
+    RountedButton:
+        id: btn_login_push
+        text: "Вхід"
+        color: utils.get_color_from_hex('#434343')
+        background_normal: ''
+        on_press: root.show_login_form()
+        width:  self.parent.width / 4
+        pos_hint: {"center_x": .5, "center_y": .5}
+        size_hint: 0.4, None
+        height: 140
+        pos_hint: {'down': 1}
+
+<RountedButton@Button>
+    background_color: (0,0,0,0)
+    background_normal: ''
+    text_color: "#363636"
+    canvas.before:
+        Color:
+            rgba: utils.get_color_from_hex('#F5F5F5')
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [25]

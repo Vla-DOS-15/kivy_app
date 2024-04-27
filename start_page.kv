@@ -1,0 +1,85 @@
+#:import utils kivy.utils
+
+<StartPage>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 50  # Встановлюємо відступ зліва та зверху
+        canvas.before:
+            Color:
+                rgba: utils.get_color_from_hex('#7BFF70')
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        Label:
+            text: 'SpendWise'
+            size_hint: None, None
+            size: 312, 74
+            color: utils.get_color_from_hex('#434343')
+            pos_hint: {'top': 1}
+            top: 100
+            left: 19
+            font_size: 40
+            valign: 'middle'
+            halign: 'center'
+            bold: True
+            font_name: './Data/Fonts/Montserrat SemiBold 600.ttf'
+            padding_y: 50  # Встановлюємо відступ зверху
+
+        Label:
+            text: 'Твій віртуальний гаманець'
+            size_hint: None, None
+            size: 312, 20
+            pos_hint: {'top': 1}
+            top: 0
+            left: 19
+            font_size: 16
+            valign: 'middle'
+            halign: 'center'
+            markup: True
+            color: utils.get_color_from_hex('#434343')
+            font_name: './Data/Fonts/Montserrat SemiBold 600.ttf'
+        Image:
+            source: '7700_6_02 2.png'  # Замініть 'your_photo.jpg' на шлях до вашого зображення
+            size_hint: None, None
+            size: 354, 386
+            pos_hint: {'top': 1}
+            top: 182
+            left: -2
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: None, None
+            size: 320, 82
+            pos_hint: {'top': 0}
+            top: 552
+            left: 15
+            spacing: 20
+
+            Label:
+                text: 'Для кого гаманець?'
+                size_hint: None, None
+                size: 320, 40
+                font_size: 18
+                valign: 'middle'
+                halign: 'center'
+
+            BoxLayout:
+                orientation: 'horizontal'
+                spacing: 20
+
+                Button:
+                    text: 'Для мене'
+                    size_hint_x: None
+                    width: 140
+                    height: 42
+                    on_press: app.root.current = 'login'
+
+                Button:
+                    text: 'Для сім\'ї'
+                    size_hint_x: None
+                    width: 140
+                    height: 42
+                    background_color: (0, 0, 0, 0)  # Прозорий фон
+                    border: (30, 30, 30, 30)  # Заокруглення країв
+                    on_press: app.root.current = 'login'

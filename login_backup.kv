@@ -1,0 +1,85 @@
+<LoginPage>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: [10,50,10,50]
+        spacing: 50
+        canvas.before:
+            Color:
+                rgba: utils.get_color_from_hex('#58AE6F')
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        Button:
+            text: '<    Назад'
+            size_hint: 1, None
+            height: 37
+            text_size: self.size
+            halign: 'left'
+            valign: 'middle'
+            pos_hint: {'top': 1}
+            top: 0
+            left: 1
+            padding: 20, 0, 0, 0
+            markup: True
+            color: 26, 26, 26, 1
+            background_color: 100, 98, 98, 1
+            on_press: root.manager.current = 'start'
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: 1, None
+            height: 128
+
+            Image:
+                source: '7700_6_02 2.png'
+                size_hint_y: None
+                height: 128
+                pos_hint: {'center_x': 0.5}
+                allow_stretch: True
+                keep_ratio: True
+
+            Label:
+                text: 'Почніть керувати своїми \nфінансами разом із SpendWise'
+                size_hint_y: None
+                height: self.texture_size[1]  # Висота тексту автоматично розраховується
+                font_size: 16
+                font_weight: '500'
+                line_height: 1.3  # Відстань між рядками
+                multiline: True  # Дозвіл на багаторядковий текст
+                valign: 'bottom'
+                halign: 'center'
+                font_name: './Data/Fonts/Montserrat SemiBold 600.ttf'
+                color: 26, 26, 26, 1
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: 50
+            spacing: 10
+
+            Button:
+                text: 'Реєстрація'
+                on_press: root.show_registration_form()
+
+            Button:
+                text: 'Вхід'
+                on_press: root.show_login_form()
+
+        TextInput:
+            id: email_input
+            hint_text: 'Введіть пошту'
+            size_hint: None, None
+            size: 250, 40
+            multiline: False
+            password: False
+            opacity: 0  # Приховати поле вводу за замовчуванням
+
+        TextInput:
+            id: password_input
+            hint_text: 'Введіть пароль'
+            size_hint: None, None
+            size: 250, 40
+            multiline: False
+            password: True
+            opacity: 0  # Приховати поле вводу за замовчуванням
